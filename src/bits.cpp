@@ -22,7 +22,7 @@ namespace assignment {
     for (int pos = 0; pos < static_cast<int>(elems.size()); pos++) {
 
       if (is_bit_set(mask, pos)) {
-        indices.push_back(elems[pos]);
+        indices.push_back(pos);
       }
     }
 
