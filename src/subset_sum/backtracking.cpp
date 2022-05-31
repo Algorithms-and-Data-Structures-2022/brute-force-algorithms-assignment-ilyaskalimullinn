@@ -32,21 +32,21 @@ namespace assignment {
     }
 
     // Ограничение 1: текущая сумма должна быть меньше целевой
-    if (true /* ... */) {
+    if (target_sum < sum) {
       // если превысили целевую сумму, то сделать ее меньше уже не получится (все элементы множества положительные)
       return;
     }
 
     // Ограничение 2: "остаточная сумма" + "текущая сумма" должны быть больше или равны "целевой сумме"
-    if (true /* ... */) {
+    if (residual + sum < target_sum) {
       // сумму невозможно будет набрать с оставшимися элементами множества
       return;
     }
 
     // если найдено подмножество с целевой суммой, то сохраняем в результат это подмножество
     if (sum == target_sum) {
-      // ... сохранение в результат
-      // ... нужно ли в этой ветке рекурсии рассматривать следующие элементы?
+      indices.push_back(mask2indices(set, mask));
+      return;
     }
 
     // рассматриваем следующий элемент
@@ -56,6 +56,8 @@ namespace assignment {
     residual -= set[index];
 
     // рекурсивный вызов со включением/исключением элемента с текущим индексом ...
+    search(set, index, set_bit(mask, index), sum + set[index], residual, target_sum, indices);
+    search(set, index, mask, sum, residual, target_sum, indices);
   }
 
 }  // namespace assignment
